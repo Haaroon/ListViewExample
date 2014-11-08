@@ -26,8 +26,10 @@ public class MainActivity extends Activity {
         };
 
         //generates rtows for listview
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.row_layotu,
-                R.id.textview1, favouriteTVShows);
+        //ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.row_layotu,
+        //        R.id.textview1, favouriteTVShows);
+
+        ListAdapter theAdapter = new MyAdapter(this, favouriteTVShows);
         //create list view
         ListView theListView = (ListView) findViewById(R.id.MainListView);
         //tell list view what values it will use
