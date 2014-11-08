@@ -4,12 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -19,34 +16,35 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] favouriteTVShows = {
-                "Pokemon", "Digimon", "Suits", "Dark Knight",
-                "Gotham", "Superman", "Life of Mars",
-                "Arrow", "Breaking Bad", "Orphan Black"
-        };
+        // Simple array with a list of my favorite TV shows
+        String[] favoriteTVShows = {"Pushing Daisies", "Better Off Ted",
+                "Twin Peaks", "Freaks and Geeks", "Orphan Black", "Walking Dead",
+                "Breaking Bad", "The 400", "Alphas", "Life on Mars"};
 
-        //generates rtows for listview
-        //ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.row_layotu,
-        //        R.id.textview1, favouriteTVShows);
+        // A View is the generic term and class for every widget you put on your screen.
+        // Views occupy a rectangular area and are responsible for handling events
+        // and drawing the widget.
 
-        ListAdapter theAdapter = new MyAdapter(this, favouriteTVShows);
-        //create list view
-        ListView theListView = (ListView) findViewById(R.id.MainListView);
-        //tell list view what values it will use
+        // The ListAdapter acts as a bridge between the data and each ListItem
+        // You fill the ListView with a ListAdapter. You pass it a context represented by
+        // this.
+
+        // A Context provides access to resources you need. It provides the current Context, or
+        // facts about the app and the events that have occurred with in it.
+        // android.R.layout.simple_list_item_1 is one of the resources needed.
+        // It is a predefined layout provided by Android that stands in as a default
+
+        ListAdapter theAdapter = new MyAdapter(this, favoriteTVShows);
+
+        // We point the ListAdapter to our custom adapter
+        // ListAdapter theAdapter = new MyAdapter(this, favoriteTVShows);
+
+        // Get the ListView so we can work with it
+        ListView theListView = (ListView) findViewById(R.id.listView1);
+
+        // Connect the ListView with the Adapter that acts as a bridge between it and the array
         theListView.setAdapter(theAdapter);
-
-        theListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
-                    String tvShowPicked = "You Selected " +
-                            String.valueOf( adapterView.getItemAtPosition(position));
-
-                    Toast.makeText( MainActivity.this, tvShowPicked, Toast.LENGTH_SHORT ).show();
-                };
-        });
-    };
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,12 +59,9 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

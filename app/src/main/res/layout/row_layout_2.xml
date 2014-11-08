@@ -2,27 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".MainActivity">
+    android:orientation="horizontal">
 
+    <!-- Image for each ListItem row
+    We can refer to images in our drawable folder with
+    @drawable/dot for the image named dot.png -->
     <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="25dp"
-        android:src="@drawable/dot"
-        android:id="@+id/findImageView1"/>
+        android:src="@drawable/dot"/>
 
-
-    <!--
-        match parent so it can fil screen
-    -->
+    <!-- Used to define a custom ListView row -->
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textview1"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:padding="15dp"/>
+        android:padding="15dp"
+        />
 
 </LinearLayout>
